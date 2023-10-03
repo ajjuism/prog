@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task Progress Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            width: 300px;
+            font-family: 'Urbanist', sans-serif;
+            background-color: #0e141a;
+            color: #ecf0f1;
+            padding: 10px;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+        }
+
+        button, input, select {
+            width: calc(100% - 10px);
+            box-sizing: border-box;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+
+        }
+
+        input {
+            padding: 10px;
+        }
+
+        select {
+            padding: 10px;
+        }
+
+        button {
+            background-color: #2e948f;
+            padding: 12px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        button:hover {
+            background-color: #1b4a46;
+        }
+
+        progress {
+            width: 100%;
+            height: 20px;
+        }
+
+        #tabs {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #progressTab {
+        color: #5ad2ca; /* Light blue color */
+        font-weight: bold;
+        }
+
+        /* Set color for Edit tab title */
+        #settingsTab {
+            color: #fff; /* Light green color */
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        #taskTitle {
+            margin-top: 20px;
+        }
+
+        .default-progress::-webkit-progress-bar {
+            background-color: #bdc3c7;
+        }
+
+        .default-progress::-webkit-progress-value {
+            background-color: #3498db;
+        }
+
+        .striped-progress::-webkit-progress-bar {
+            background-color: #bdc3c7;
+        }
+
+        .striped-progress::-webkit-progress-value {
+            background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-size: 40px 40px;
+            background-color: #34db90;
+        }
+
+        .rounded-progress {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        #taskNameInput {
+            padding : 10px;
+        }
+
+        .rounded-progress::-webkit-progress-bar {
+            border-radius: 20px;
+            background-color: #bdc3c7;
+        }
+
+        .rounded-progress::-webkit-progress-value {
+            border-radius: 20px;
+            background: linear-gradient(to right, #3498db, #3ce7de);
+        }
+
+        /* Improved Spacing for Settings Tab Elements */
+        #settingsContent input, #settingsContent select, #settingsContent button {
+            margin-bottom: 12px; /* Increase the bottom margin for better spacing */
+        }
+
+        #settingsContent label {
+            display: block;
+            margin-bottom: 5px;
+            margin-top: 5px; /* Add top margin for better spacing between label and previous element */
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #settingsContent label:first-of-type {
+            margin-top: 0; /* Remove top margin for the first label to keep it close to the top */
+        }
+
+            /* Add Spacing Above the First Input */
+        #settingsContent input:first-of-type {
+            margin-top: 20px; /* Add top margin to the first input for better spacing from the tabs */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="tabs">
+        <span id="progressTab">PROG  <i class="fas fa-chart-line"></i></span>
+        <span id="settingsTab"><i class="fas fa-pen-square"></i></span> <!-- Add pencil icon next to "Edit" -->
+    </div>
+    <div id="progressContent" class="tab-content active">
+        <h2 id="taskTitle">Task Name</h2>
+        <progress id="progressBar" max="100" value="0"></progress>
+        <p id="deadline">Deadline: Not Set</p>
+        <p id="timePassed">Time Passed: 0 hours/days</p>
+        <p id="timeRemaining">Time Remaining: 0 hours/days</p>
+    </div>
+    <div id="settingsContent" class="tab-content">
+        <input type="text" id="taskNameInput" placeholder="Enter task name">
+        <label for="deadlineInput">Deadline</label>
+        <input type="datetime-local" id="deadlineInput">
+        <label for="timeType">Unit</label>
+        <select id="timeType">
+            <option value="days">Days</option>
+            <option value="hours">Hours</option>
+            <option value="minutes">Minutes</option>
+            <option value="seconds">Seconds</option>
+        </select>
+        <label for="progressBarStyle">Theme</label>
+        <select id="progressBarStyle">
+            <option value="default">Default</option>
+            <!-- <option value="striped">Striped</option> -->
+            <option value="rounded">Rounded</option>
+        </select>
+        <button id="saveBtn">Save</button>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
